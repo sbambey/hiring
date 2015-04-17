@@ -1,0 +1,4 @@
+<div>
+	<%= label_tag attribute, args[:label] || nil %>
+	<%= text_area_tag attribute, nil, class: "form-control #{args[:field_class] || ""}", placeholder: "#{args[:placeholder] || attribute.to_s.humanize}" %>
+</div>

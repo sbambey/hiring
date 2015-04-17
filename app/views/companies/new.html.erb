@@ -1,0 +1,37 @@
+<% provide(:title, "Sign up") %>
+<div class="container">
+  <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
+    <div class="panel panel-default">
+		  <div class="panel-heading">
+		    <h3 class="panel-title">Sign up</h3>
+		  </div>
+		  <div class="panel-body">
+
+		  	<div class="alert alert-warning" role="alert">
+		  		<p>You will act as the lead for your company.</p>
+		  		<p>To change the lead or add members to your company's account, visit the Settings menu after signing up.</p>
+		  	</div>
+
+		    <%= form_for(@company) do |f| %>
+
+	    		<%= render "shared/text_field", f: f, attribute: :name, args: { placeholder: "Company name", label_text: "Company name", label_class: "control-label" } %>		    	
+
+		    	<%= f.fields_for :users do |builder| %>
+
+		    		<%= render "shared/text_field", f: builder, attribute: :username, args: { placeholder: "Username", label_class: "control-label" } %>
+
+			      <%= render "shared/text_field", f: builder, attribute: :email, args: { placeholder: "Email", label_class: "control-label" } %>
+
+			      <%= render "devise/shared/password_field", f: builder, args: {} %>
+
+			      <%= render "devise/shared/password_confirmation_field", f: builder, args: {} %>
+
+			      <%= builder.hidden_field :type, value: "Owner" %>
+			    <% end %>
+
+		      <%= f.submit "Sign up", class: "btn btn-default btn-green btn-bottom" %>
+		    <% end %>
+		  </div>
+		</div>
+  </div>
+</div>

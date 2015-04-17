@@ -1,0 +1,83 @@
+<%= render "sidebar" %>
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+	<%= render "layouts/flash_messages" %>
+  <h1 class="page-header">Team</h1>
+
+  <!--<div class="row placeholders">
+    <div class="col-xs-6 col-sm-3 placeholder">
+      <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
+      <h4>Label</h4>
+      <span class="text-muted">Something else</span>
+    </div>
+    <div class="col-xs-6 col-sm-3 placeholder">
+      <img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail">
+      <h4>Label</h4>
+      <span class="text-muted">Something else</span>
+    </div>
+    <div class="col-xs-6 col-sm-3 placeholder">
+      <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
+      <h4>Label</h4>
+      <span class="text-muted">Something else</span>
+    </div>
+    <div class="col-xs-6 col-sm-3 placeholder">
+      <img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail">
+      <h4>Label</h4>
+      <span class="text-muted">Something else</span>
+    </div>
+  </div>
+
+  <h2 class="sub-header">Section title</h2>-->
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @company.owners.each do |owner| %>
+        <tr>
+          <td><%= @i %></td>
+          <td>
+            <%= owner.username %>
+            <span class="label label-danger tag">Owner</span>
+          </td>
+          <td><%= owner.email %></td>
+          <td class="actions"><%= (team_actions(owner, current_user) unless current_user == owner) %></td>
+        </tr>
+        <% @i += 1 %>
+        <% end %>
+        <% @company.leads.each do |lead| %>
+        <tr>
+          <td><%= @i %></td>
+          <td>
+            <%= lead.username %>
+            <%= '<span class="label label-danger tag">Owner</span>'.html_safe if lead.owner? %>
+            <span class="label label-warning tag">Lead</span>
+          </td>
+          <td><%= lead.email %></td>
+          <td class="actions"><%= (team_actions(lead, current_user) unless current_user == lead) %></td>
+        </tr>
+        <% @i += 1 %>
+        <% end %>
+        <% @company.members.each do |member| %>
+        <tr>
+          <td><%= @i %></td>
+          <td><%= member.username %></td>
+          <td><%= member.email %></td>
+          <td class="actions"><%= team_actions(member, current_user) unless current_user == member %></td>
+        </tr>
+        <% @i += 1 %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <% if current_user.has_priviliges? %>
+    <%= link_to "Add team member", new_user_path, class: "btn btn-default" %>
+  <% end %>
+
+</div>

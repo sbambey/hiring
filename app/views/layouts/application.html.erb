@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hiring</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body class="<%= params[:action] == "landing" ? "web-app" : controller.controller_name %>">
+
+<%= render "layouts/header" %>
+
+<% if params[:action] == "landing" %>
+	<%= yield %>
+<% else %>
+	<div class="container">
+		<div class="col-xs-12">
+			<% unless no_flash?("#{params[:controller]}##{params[:action]}") %>
+				<%= render "layouts/flash_messages" %>
+			<% end %>
+		</div>
+	</div>
+	<div class="container-fluid">
+		<div class="col-xs-12 ">
+			<%= yield %>
+		</div>
+	</div>
+<% end %>
+
+</body>
+</html>

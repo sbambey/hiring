@@ -1,0 +1,75 @@
+<%= render "dashboard/sidebar" %>
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main limited-input">
+	<%= render "layouts/flash_messages" %>
+  <h1 class="page-header">Creating job posting form</h1>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-lg-7">
+      <%= form_for [@posting, @form], remote: true do |f| %>
+			<% @form.categories.each do |category| %>
+				<%= f.fields_for :category, category do |ff| %>
+				<%= ff.hidden_field :form_id %>
+				<h3><%= category.title %></h3>
+				<div class="row">
+					<div class="col-xs-12">
+
+						<% category.fields.each do |field| %>
+							<%= ff.fields_for :field, field do |builder| %>
+								<%= builder.hidden_field :name %>
+								<%= builder.button to_title(field.name), value: field.name, class: "btn btn-default btn-builder" %>
+							<% end %>
+						<% end %>
+
+					</div>
+				</div>
+				<% end %>
+			<% end %>
+			<% end %>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<div class="row">
+	<div class="col-xs-12 col-md-6 build">
+		<div class="header">
+			<h2>Select the components for your form</h2>
+			<p class="lead">Select the components for your form below</p>
+		</div>
+		<section>
+			<%= form_for [@posting, @form], remote: true do |f| %>
+			<% @form.categories.each do |category| %>
+				<%= f.fields_for :category, category do |ff| %>
+				<%= ff.hidden_field :form_id %>
+				<h3><%= category.title %></h3>
+				<div class="row">
+					<div class="col-xs-12">
+
+						<% category.fields.each do |field| %>
+							<%= ff.fields_for :field, field do |builder| %>
+								<%= builder.hidden_field :name %>
+								<%= builder.button to_title(field.name), value: field.name, class: "btn btn-default btn-builder" %>
+							<% end %>
+						<% end %>
+
+					</div>
+				</div>
+				<% end %>
+			<% end %>
+			<% end %>
+
+		</section>
+	</div>
+	<div class="col-xs-12 col-md-6 bordered preview">
+		<%= render template: "forms/show" %>
+	</div>
+</div>

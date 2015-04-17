@@ -1,0 +1,21 @@
+<div class="header">
+	<h2>Preview</h2>
+	<p class="lead">Fiddle with the settings on the left to perfect it</p>
+</div>
+
+<% @form.categories.each do |category| %>
+<section class="hidden">
+	<h3><%= category.title %></h3>
+
+	<div class="row hidden">
+	<% category.fields.each do |field| %>
+		<% if field.new_line %>
+			</div><div class="row hidden">
+			<%= render "forms/groups/text_field", attribute: field.name, field_class: field.field_class %>
+		<% else %>
+			<%= render "forms/groups/text_field", attribute: field.name, field_class: field.field_class %>
+		<% end %>
+	<% end %>
+	</div>
+</section>
+<% end %>

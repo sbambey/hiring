@@ -1,0 +1,80 @@
+body {
+	font-family: 'Open Sans', Arial, sans-serif;
+	background:#FFF;
+	font-weight:300;
+	height: 100%;
+	margin: 0;
+	padding-top: 50px;
+	color:#666666;
+}
+
+textarea:hover, 
+input:hover, 
+textarea:active, 
+input:active, 
+textarea:focus, 
+input:focus,
+button:focus,
+button:active,
+button:hover
+{
+  outline:0px !important;
+}
+
+.error-explanation {
+  color: $state-danger-text;
+}
+
+.alert .form-group {
+	margin-bottom: 0;
+}
+
+/* Navbar */
+.navbar-default {
+	background-color: #FFF;
+	border-color:#ccc;
+	padding: 0 15px;
+
+	.navbar-brand, .navbar-brand:hover {
+		color: #FFF;
+		font-weight:bold;
+	}
+
+	.navbar-nav > li > a {
+	color: #333;
+	text-transform:uppercase;
+	font-weight:bold;
+	}
+
+	.navbar-nav > .active > a,
+	.navbar-nav > .active > a:hover,
+	.navbar-nav > .active > a:focus {
+		color: #333;
+		background-color: rgba(255, 255, 255, 0.22);
+	}
+
+	.navbar-nav > li > a:hover,
+	.navbar-nav > li > a:focus {
+		color: rgba(0, 0, 0, 0.5);
+		background-color: transparent;
+	}
+
+	.navbar-nav > .open > a,
+	.navbar-nav > .open > a:hover,
+	.navbar-nav > .open > a:focus {
+		color: #333;
+		background-color: rgba(255, 255, 255, 0.21);
+	}
+
+	.navbar-brand {
+		padding: 8px 0;
+	}
+}
+
+/* Navbar margin */
+
+
+/* Flash */
+.flash-messages {
+	margin-top: 20px;
+}

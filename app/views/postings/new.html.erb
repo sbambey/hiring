@@ -1,0 +1,24 @@
+<%= render "dashboard/sidebar" %>
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main limited-input">
+	<%= render "layouts/flash_messages" %>
+  <h1 class="page-header">Creating job posting</h1>
+
+  <div class="alert alert-info" role="alert">
+    <p>Your posting will be created in two steps. In this step, you are providing the informational text and in step two, you will create the form for your applicants.</p>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-lg-7">
+      <%= form_for(@posting) do |f| %>
+
+        <div id="wmd-button-bar-description"></div>
+        <%= render "shared/text_area", f: f, attribute: :description, args: { placeholder: "Use markdown to create your application description. Preview below.", field_class: "wmd-input form-control content",
+          field_id: "wmd-input-description", label_class: "sr-only" } %>
+        <div id="wmd-preview-description" class="wmd-preview form-control content"></div>
+
+        <%= render "shared/text_field", f: f, attribute: :title, args: { placeholder: "Title; we use this when we link to your application", label_class: "control-label" } %>
+
+        <%= f.submit "Create posting", class: "btn btn-default" %>
+      <% end %>
+    </div>
+  </div>
+</div>

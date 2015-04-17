@@ -1,0 +1,9 @@
+<% args = {} unless args %>
+<% if field_class == "4" %>
+	<div class="col-xs-12 col-sm-4 field hidden">
+<% else %>
+	<div class="col-xs-12 col-sm-8 field hidden">
+<% end %>
+	<%= label_tag attribute, args[:label] || nil %>
+	<%= text_field_tag attribute, nil, class: "form-control #{args[:field_class] || ""}", placeholder: "#{args[:placeholder] || attribute.to_s.humanize}" %>
+</div>
